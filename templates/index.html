@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>DFA Equivalence Tester</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo-area">
+
+        <div class="logo">
+            DFA
+        </div>
+
+        <div>
+
+            <div class="brand-name">
+                Equivalence Tester
+            </div>
+
+            <div class="brand-subtitle">
+                Automata Theory Tool
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="#workspace">
+            Workspace
+        </a>
+
+        <a href="#algorithm">
+            Algorithm
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-container">
+
+
+        <div class="hero-content">
+
+            
+
+            <h1>
+
+                DFA
+
+                <span>
+                    Equivalence
+                </span>
+
+                Tester
+
+            </h1>
+
+
+            <p>
+
+                Compare two deterministic finite automata
+                and determine whether they accept exactly
+                the same regular language.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="#workspace"
+                   class="primary-button">
+
+                    Start Testing
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+
+                <a href="#algorithm"
+                   class="secondary-button">
+
+                    Learn the algorithm
+
+                </a>
+
+            </div>
+
+
+            <div class="hero-features">
+
+                <span>✓ Real-Time Validation</span>
+
+                <span>✓ Product Construction</span>
+
+                <span>✓ Instant Results</span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HERO VISUAL -->
+
+        <div class="hero-card">
+
+            <div class="hero-card-header">
+
+                <span>
+                    JOINT STATE ANALYSIS
+                </span>
+
+                <div class="online">
+
+                    <span></span>
+
+                    Ready
+
+                </div>
+
+            </div>
+
+
+            <div class="state-visual">
+
+                <div class="state-circle">
+                    q0
+                </div>
+
+
+                <div class="connection">
+
+                    <span>
+                        0
+                    </span>
+
+                </div>
+
+
+                <div class="state-circle green-circle">
+                    p0
+                </div>
+
+
+                <div class="connection vertical">
+
+                    <span>
+                        1
+                    </span>
+
+                </div>
+
+
+                <div class="joint-state">
+                    (q0,p0)
+                </div>
+
+            </div>
+
+
+            <div class="hero-card-footer">
+
+                <span>
+                    Product Construction
+                </span>
+
+                <span>
+                    ●
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WORKSPACE
+     ===================================================== -->
+
+<main id="workspace"
+      class="workspace">
+
+
+    <div class="section-heading">
+
+        <div class="section-number">
+            01
+        </div>
+
+        <div>
+
+            <div class="section-label">
+                ANALYSIS WORKSPACE
+            </div>
+
+            <h2>
+                Configure your DFAs
+            </h2>
+
+            <p>
+                Enter the states, alphabet and acceptance
+                information for both automata.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         DFA CARDS
+         ================================================= -->
+
+    <div class="dfa-container">
+
+
+        <!-- ================= DFA 1 ================= -->
+
+        <div class="dfa-card">
+
+            <div class="card-header">
+
+                <div class="dfa-icon">
+                    A
+                </div>
+
+                <div class="card-title">
+
+                    <span>
+                        AUTOMATON 01
+                    </span>
+
+                    <h3>
+                        DFA 1
+                    </h3>
+
+                </div>
+
+                <div class="ready">
+                    Ready
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    States
+                </label>
+
+                <input
+                    id="states1"
+                    type="text"
+                    placeholder="q0, q1, q2">
+
+                <small>
+                    Separate states using commas
+                </small>
+
+            </div>
+
+
+            <div class="two-columns">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Alphabet
+                    </label>
+
+                    <input
+                        id="alphabet1"
+                        type="text"
+                        placeholder="0, 1">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Start State
+                    </label>
+
+                    <input
+                        id="start1"
+                        type="text"
+                        placeholder="q0">
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Accepting States
+                </label>
+
+                <input
+                    id="final1"
+                    type="text"
+                    placeholder="q0">
+
+            </div>
+
+
+            <button
+                type="button"
+                class="generate-button"
+                onclick="generateTable(1)">
+
+                Generate Transition Table
+
+                <span>
+                    +
+                </span>
+
+            </button>
+
+
+            <div id="table1"
+                 class="table-container">
+            </div>
+
+
+            <div id="diagram1"
+                 class="diagram-container">
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= DFA 2 ================= -->
+
+        <div class="dfa-card">
+
+            <div class="card-header">
+
+                <div class="dfa-icon green">
+                    B
+                </div>
+
+                <div class="card-title">
+
+                    <span>
+                        AUTOMATON 02
+                    </span>
+
+                    <h3>
+                        DFA 2
+                    </h3>
+
+                </div>
+
+                <div class="ready green-text">
+                    Ready
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    States
+                </label>
+
+                <input
+                    id="states2"
+                    type="text"
+                    placeholder="p0, p1, p2">
+
+                <small>
+                    Separate states using commas
+                </small>
+
+            </div>
+
+
+            <div class="two-columns">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Alphabet
+                    </label>
+
+                    <input
+                        id="alphabet2"
+                        type="text"
+                        placeholder="0, 1">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Start State
+                    </label>
+
+                    <input
+                        id="start2"
+                        type="text"
+                        placeholder="p0">
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Accepting States
+                </label>
+
+                <input
+                    id="final2"
+                    type="text"
+                    placeholder="p0">
+
+            </div>
+
+
+            <button
+                type="button"
+                class="generate-button"
+                onclick="generateTable(2)">
+
+                Generate Transition Table
+
+                <span>
+                    +
+                </span>
+
+            </button>
+
+
+            <div id="table2"
+                 class="table-container">
+            </div>
+
+
+            <div id="diagram2"
+                 class="diagram-container">
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         ANALYZE BUTTON
+         ================================================= -->
+
+    <div class="analyze-area">
+
+        <button
+            type="button"
+            class="analyze-button"
+            onclick="testEquivalence()">
+
+            <span>
+                ◈
+            </span>
+
+            Run Equivalence Analysis
+
+            <span>
+                →
+            </span>
+
+        </button>
+
+
+        <p>
+            The system will construct reachable joint states
+            and compare their acceptance status.
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         RESULTS
+         ================================================= -->
+
+    <section id="results"
+             class="results">
+
+
+        <div class="section-heading">
+
+            <div class="section-number">
+                02
+            </div>
+
+            <div>
+
+                <div class="section-label">
+                    ANALYSIS RESULTS
+                </div>
+
+                <h2>
+                    Joint State Analysis
+                </h2>
+
+                <p>
+                    Explore the product automaton and
+                    determine language equivalence.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= STATISTICS ================= -->
+
+        <div class="stats">
+
+
+            <div class="stat">
+
+                <span>
+                    STATES EXPLORED
+                </span>
+
+                <strong id="statesExplored">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span>
+                    PAIRS GENERATED
+                </span>
+
+                <strong id="pairsGenerated">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span>
+                    TRANSITIONS CHECKED
+                </span>
+
+                <strong id="transitionsChecked">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span>
+                    RESULT
+                </span>
+
+                <strong id="resultStatus">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= RESULT ================= -->
+
+        <div id="result"
+             class="result-panel">
+
+            <div class="empty-result">
+
+                <div class="empty-icon">
+                    ◇
+                </div>
+
+                <h3>
+                    Analysis not started
+                </h3>
+
+                <p>
+                    Configure both DFAs and run the analysis
+                    to view the result.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =====================================================
+     ALGORITHM
+     ===================================================== -->
+
+<section id="algorithm"
+         class="algorithm-section">
+
+
+    <div class="algorithm-container">
+
+
+        <div class="section-heading dark">
+
+            <div class="section-number">
+                03
+            </div>
+
+            <div>
+
+                <div class="section-label">
+                    METHODOLOGY
+                </div>
+
+                <h2>
+                    How DFA equivalence works
+                </h2>
+
+                <p>
+                    The system uses reachable state pairs
+                    to compare the behavior of both DFAs.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="steps">
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <h3>
+                    Input
+                </h3>
+
+                <p>
+                    Define both deterministic finite
+                    automata.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <h3>
+                    Pair States
+                </h3>
+
+                <p>
+                    Create reachable pairs starting
+                    from both start states.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <h3>
+                    Compare
+                </h3>
+
+                <p>
+                    Compare the accepting status of
+                    every reachable pair.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    04
+                </div>
+
+                <h3>
+                    Decide
+                </h3>
+
+                <p>
+                    A mismatch means the two languages
+                    are different.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT
+     ===================================================== -->
+
+<section id="about"
+         class="about-section">
+
+    <div class="about-container">
+
+        <div>
+
+            <div class="section-label">
+                ABOUT THE PROJECT
+            </div>
+
+            <h2>
+                A practical automata analysis tool
+            </h2>
+
+            <p>
+                This project demonstrates DFA language
+                equivalence using BFS exploration,
+                product construction and distinguishing
+                strings.
+            </p>
+
+        </div>
+
+
+       
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer>
+
+    <strong>
+        DFAEQ
+    </strong>
+
+    <span>
+        DFA Equivalence Tester
+    </span>
+
+</footer>
+
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+
+</body>
+
+</html>
