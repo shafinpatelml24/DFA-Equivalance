@@ -10,6 +10,16 @@
 
     <title>DFA Equivalence Tester</title>
 
+    <!-- Progressive Web App (PWA) Meta & Icons -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="DFAEQ">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='icons/icon.svg') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='icons/icon-192.png') }}">
+
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
 
@@ -47,21 +57,33 @@
 
 
     <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="#workspace">Workspace</a>
+        <a href="#algorithm">Algorithm</a>
+        <a href="#about">About</a>
 
-        <a href="#workspace">
-            Workspace
-        </a>
+        <button id="pwaInstallBtn" class="pwa-install-btn" style="display: none;" title="Install DFA Equivalence Tester as a desktop application">
+            <svg class="pwa-install-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Install App</span>
+        </button>
 
-        <a href="#algorithm">
-            Algorithm
-        </a>
-
-        <a href="#about">
-            About
-        </a>
-
+        {% if current_user or session.get('user') %}
+        <div class="navbar-user-controls">
+            <span class="user-badge">
+                <svg class="user-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                {{ current_user or session.get('user') }}
+            </span>
+            <a href="{{ url_for('logout') }}" class="logout-nav-btn">Sign Out</a>
+        </div>
+        {% endif %}
     </nav>
-
 </header>
 
 
@@ -144,69 +166,136 @@
         <div class="hero-card">
 
             <div class="hero-card-header">
-
-                <span>
-                    JOINT STATE ANALYSIS
-                </span>
-
-                <div class="online">
-
-                    <span></span>
-
-                    Ready
-
+                <div class="hero-engine-tag">
+                    <span class="pulse-beacon"></span>
+                    <span>LIVE PRODUCT ENGINE</span>
                 </div>
-
+                <div class="hero-sync-status">
+                    <span class="status-dot"></span>
+                    <span>L(M₁) ≡ L(M₂)</span>
+                </div>
             </div>
 
+            <!-- Professional SVG Product Automaton Engine Simulation -->
+            <div class="hero-automaton-visual">
+                <svg viewBox="0 0 540 270" class="hero-product-svg" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <marker id="hero-arrow-indigo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                            <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#818cf8" />
+                        </marker>
+                        <marker id="hero-arrow-emerald" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                            <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#34d399" />
+                        </marker>
+                        <marker id="hero-arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                            <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#c7d2fe" />
+                        </marker>
+                    </defs>
 
-            <div class="state-visual">
+                    <!-- Subtle Blueprint Grid -->
+                    <g opacity="0.08" stroke="#818cf8" stroke-width="0.75" stroke-dasharray="4 4">
+                        <line x1="0" y1="40" x2="540" y2="40" />
+                        <line x1="0" y1="135" x2="540" y2="135" />
+                        <line x1="0" y1="230" x2="540" y2="230" />
+                        <line x1="80" y1="0" x2="80" y2="270" />
+                        <line x1="250" y1="0" x2="250" y2="270" />
+                        <line x1="440" y1="0" x2="440" y2="270" />
+                    </g>
 
-                <div class="state-circle">
-                    q0
-                </div>
+                    <!-- Convergence Flows from q0 & p0 to (q0, p0) -->
+                    <path d="M 96 72 C 145 78, 175 110, 212 126" fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="5 4" class="flow-line-1" marker-end="url(#hero-arrow-indigo)" />
+                    <path d="M 96 198 C 145 192, 175 160, 212 144" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="5 4" class="flow-line-2" marker-end="url(#hero-arrow-emerald)" />
 
+                    <!-- Cartesian Product Badge -->
+                    <g transform="translate(142, 135)">
+                        <rect x="-26" y="-10" width="52" height="20" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1" />
+                        <text x="0" y="0" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="800" fill="#94a3b8">M₁ × M₂</text>
+                    </g>
 
-                <div class="connection">
+                    <!-- Outgoing Transition: (q0, p0) --0--> (q1, p1) -->
+                    <path d="M 286 135 L 396 135" fill="none" stroke="#818cf8" stroke-width="2.5" marker-end="url(#hero-arrow-indigo)" class="flow-line-main" />
 
-                    <span>
-                        0
-                    </span>
+                    <!-- Transition 0 Pill -->
+                    <g transform="translate(341, 135)">
+                        <rect x="-22" y="-11" width="44" height="22" rx="6" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5" />
+                        <text x="0" y="0" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="900" fill="#c7d2fe">0</text>
+                    </g>
 
-                </div>
+                    <!-- Circular Self-Loop on (q0, p0) for Input 1 -->
+                    <path d="M 235 99 C 218 42, 282 42, 265 99" fill="none" stroke="#818cf8" stroke-width="2.5" marker-end="url(#hero-arrow-indigo)" />
+                    <g transform="translate(250, 48)">
+                        <rect x="-18" y="-10" width="36" height="20" rx="5" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.2" />
+                        <text x="0" y="0" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="900" fill="#c7d2fe">1</text>
+                    </g>
 
+                    <!-- NODE 1: DFA 1 State q0 -->
+                    <g transform="translate(70, 70)" class="hero-node">
+                        <circle cx="0" cy="0" r="28" fill="#ffffff" stroke="#818cf8" stroke-width="3" />
+                        <text x="0" y="0" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="800" fill="#1e1b4b">q₀</text>
+                        <!-- DFA 1 Tag -->
+                        <rect x="-20" y="-38" width="40" height="15" rx="4" fill="rgba(99, 102, 241, 0.2)" stroke="#818cf8" stroke-width="1" />
+                        <text x="0" y="-30" text-anchor="middle" dominant-baseline="central" font-size="8.5" font-weight="800" fill="#c7d2fe">DFA 1</text>
+                    </g>
 
-                <div class="state-circle green-circle">
-                    p0
-                </div>
+                    <!-- NODE 2: DFA 2 State p0 -->
+                    <g transform="translate(70, 200)" class="hero-node">
+                        <circle cx="0" cy="0" r="28" fill="#ffffff" stroke="#34d399" stroke-width="3" />
+                        <text x="0" y="0" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="800" fill="#064e3b">p₀</text>
+                        <!-- DFA 2 Tag -->
+                        <rect x="-20" y="25" width="40" height="15" rx="4" fill="rgba(16, 185, 129, 0.2)" stroke="#34d399" stroke-width="1" />
+                        <text x="0" y="33" text-anchor="middle" dominant-baseline="central" font-size="8.5" font-weight="800" fill="#a7f3d0">DFA 2</text>
+                    </g>
 
+                    <!-- CENTER NODE: Joint State (q0, p0) with Double Ring & White Background -->
+                    <g transform="translate(250, 135)" class="hero-node pulse-node">
+                        <!-- Glowing ambient shadow -->
+                        <circle cx="0" cy="0" r="42" fill="none" stroke="rgba(99, 102, 241, 0.25)" stroke-width="6" />
+                        <!-- Outer white circle -->
+                        <circle cx="0" cy="0" r="36" fill="#ffffff" stroke="#6366f1" stroke-width="3" />
+                        <!-- Concentric inner double ring -->
+                        <circle cx="0" cy="0" r="29" fill="none" stroke="#6366f1" stroke-width="2" />
+                        <text x="0" y="0" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="900" fill="#111827">(q₀, p₀)</text>
+                        <!-- Status Badge below -->
+                        <g transform="translate(0, 48)">
+                            <rect x="-38" y="-9" width="76" height="18" rx="5" fill="#1e1b4b" stroke="#818cf8" stroke-width="1" />
+                            <text x="0" y="0" text-anchor="middle" dominant-baseline="central" font-size="8" font-weight="800" fill="#c7d2fe" letter-spacing="0.5">START PAIR</text>
+                        </g>
+                    </g>
 
-                <div class="connection vertical">
-
-                    <span>
-                        1
-                    </span>
-
-                </div>
-
-
-                <div class="joint-state">
-                    (q0,p0)
-                </div>
-
+                    <!-- DESTINATION NODE: Joint State (q1, p1) with Double Ring & White Background -->
+                    <g transform="translate(440, 135)" class="hero-node">
+                        <!-- Outer white circle -->
+                        <circle cx="0" cy="0" r="34" fill="#ffffff" stroke="#10b981" stroke-width="3" />
+                        <!-- Concentric inner double ring -->
+                        <circle cx="0" cy="0" r="27" fill="none" stroke="#10b981" stroke-width="2" />
+                        <text x="0" y="0" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="900" fill="#111827">(q₁, p₁)</text>
+                        <!-- Status Badge below -->
+                        <g transform="translate(0, 46)">
+                            <rect x="-35" y="-9" width="70" height="18" rx="5" fill="#064e3b" stroke="#34d399" stroke-width="1" />
+                            <text x="0" y="0" text-anchor="middle" dominant-baseline="central" font-size="8" font-weight="800" fill="#a7f3d0" letter-spacing="0.5">MATCH ✓</text>
+                        </g>
+                    </g>
+                </svg>
             </div>
 
+            <!-- Mini Metrics Matrix Strip -->
+            <div class="hero-hud-matrix">
+                <div class="hud-item">
+                    <span class="hud-label">ALGORITHM</span>
+                    <span class="hud-val">BFS Product Automaton</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">CARTESIAN PAIR</span>
+                    <span class="hud-val">M₁ ⊗ M₂</span>
+                </div>
+                <div class="hud-item highlight">
+                    <span class="hud-label">DECISION</span>
+                    <span class="hud-val">EQUIVALENT ✓</span>
+                </div>
+            </div>
 
             <div class="hero-card-footer">
-
-                <span>
-                    Product Construction
-                </span>
-
-                <span>
-                    ●
-                </span>
-
+                
+                <span class="footer-chip">100% Deterministic</span>
             </div>
 
         </div>
@@ -809,8 +898,9 @@
 
         </div>
 
-
        
+
+    </div>
 
 </section>
 
@@ -836,6 +926,53 @@
 
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 
+<!-- Progressive Web App (PWA) Handler -->
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                .then((registration) => {
+                    console.log('PWA Service Worker registered successfully with scope:', registration.scope);
+                })
+                .catch((err) => {
+                    console.warn('PWA Service Worker registration error:', err);
+                });
+        });
+    }
+
+    let pwaInstallPrompt = null;
+    const pwaInstallBtn = document.getElementById('pwaInstallBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        pwaInstallPrompt = e;
+        if (pwaInstallBtn) {
+            pwaInstallBtn.style.display = 'inline-flex';
+        }
+    });
+
+    if (pwaInstallBtn) {
+        pwaInstallBtn.addEventListener('click', async () => {
+            if (!pwaInstallPrompt) return;
+            pwaInstallPrompt.prompt();
+            const choiceResult = await pwaInstallPrompt.userChoice;
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the PWA install prompt');
+            } else {
+                console.log('User dismissed the PWA install prompt');
+            }
+            pwaInstallPrompt = null;
+            pwaInstallBtn.style.display = 'none';
+        });
+    }
+
+    window.addEventListener('appinstalled', () => {
+        console.log('DFA Equivalence Tester PWA was installed successfully!');
+        if (pwaInstallBtn) {
+            pwaInstallBtn.style.display = 'none';
+        }
+    });
+</script>
 
 </body>
 
