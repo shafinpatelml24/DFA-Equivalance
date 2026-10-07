@@ -1,9 +1,9 @@
 /* =========================================================
    DFA EQUIVALENCE TESTER - PWA SERVICE WORKER
-   Cache Version: dfaeq-v1
+   Cache Version: dfaeq-v2
    ========================================================= */
 
-const CACHE_NAME = 'dfaeq-cache-v1';
+const CACHE_NAME = 'dfaeq-cache-v2';
 
 const PRECACHE_ASSETS = [
   '/',
